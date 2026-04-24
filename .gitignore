@@ -206,3 +206,6 @@ __marimo__/
 
 # Generated using ignr.py - github.com/Antrikshy/ignr.py
 
+# Python cache
+**/__pycache__/
+*.py[cod]
