@@ -2,7 +2,7 @@ import logging
 import os
 
 from colorlog import ColoredFormatter
-from pythonjsonlogger import jsonlogger
+from pythonjsonlogger.json import JsonFormatter
 
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
 ENVIRONMENT = os.getenv("ENVIRONMENT", "development").lower()
@@ -19,9 +19,7 @@ def get_logger(name: str) -> logging.Logger:
     console_handler = logging.StreamHandler()
 
     if ENVIRONMENT == "production":
-        formatter = jsonlogger.JsonFormatter(
-            "%(asctime)s %(levelname)s %(name)s %(message)s"
-        )
+        formatter = JsonFormatter("%(asctime)s %(levelname)s %(name)s %(message)s")
     else:
         formatter = ColoredFormatter(
             "%(log_color)s%(asctime)s - %(levelname)s - %(name)s - %(message)s",
