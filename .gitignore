@@ -209,3 +209,5 @@ __marimo__/
 # Python cache
 **/__pycache__/
 *.py[cod]
+.claude
+.claude/
