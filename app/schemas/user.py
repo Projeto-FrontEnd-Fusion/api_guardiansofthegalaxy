@@ -19,13 +19,10 @@ class UserCreate(BaseModel):
         ...,
         min_length=3,
         max_length=200,
-        examples="João Nascimento dos Santos Silva",
         description="Nome completo do usuário",
     )
 
-    email: EmailStr = Field(
-        ..., examples="Joaonascimento@email.com", description="Email do usuário"
-    )
+    email: EmailStr = Field(..., description="Email do usuário")
 
     role: RoleEnum = Field(..., description="Cargos disponíveis para se inscrever")
 
