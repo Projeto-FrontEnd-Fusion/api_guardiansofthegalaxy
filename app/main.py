@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 from app.core.lifespan import lifespan
 from app.core.logger import get_logger
-from app.routers import health
+from app.routers import health, upload, user
 
 logger = get_logger(__name__)
 
@@ -48,3 +48,5 @@ app = FastAPI(
 )
 
 app.include_router(health.router)
+app.include_router(upload.router)
+app.include_router(user.router)
