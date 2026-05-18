@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Annotated
 
 from pydantic import BaseModel, EmailStr, Field, HttpUrl
 
@@ -38,12 +39,7 @@ class UserCreate(BaseModel):
 
     bio: str = Field(..., max_length=244, description="Breve definição sobre o usuário")
 
-    skills: list[str] = Field(
-        ...,
-        min_length=1,
-        description="Lista de habilidades do usuários",
-        examples=["Python", "FastAPI", "PostgreSQL"],
-    )
+    skills: Annotated[list[str], Field(min_length=1)]
 
     linkedin_url: HttpUrl = Field(..., description="URL Linkedin")
 
@@ -59,7 +55,6 @@ class UserResponse(BaseModel):
     name: str
     email: EmailStr
     role: RoleEnum
-    profile_photo_url: str
     bio: str
     skills: list[str]
     linkedin_url: HttpUrl
