@@ -14,12 +14,6 @@ class RoleEnum(str, Enum):
     QA = "qa"
 
 
-class AvatarCreate(BaseModel):
-    profile_photo: HttpUrl = Field(
-        description="Recebe arquivo em formato UploadProfile"
-    )
-
-
 class UserCreate(BaseModel):
     name: str = Field(
         ...,
