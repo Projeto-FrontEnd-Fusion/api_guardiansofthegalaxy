@@ -1,7 +1,6 @@
 from uuid import uuid4
 
-from fastapi import HTTPException
-
+from app.core.exceptions import UploadFailedError
 from app.database.supabase import get_supabase_client
 
 supabase = get_supabase_client()
@@ -25,5 +24,5 @@ def upload_avatar_service(file):
 
         return {"url": public_url}
 
-    except Exception as error:
-        raise HTTPException(status_code=500, detail=str(error))
+    except Exception:
+        raise UploadFailedError()
