@@ -1,17 +1,30 @@
-from app.core.exceptions import UserCreationError
-from app.database.supabase import get_supabase_client
-from app.schemas.user import UserCreate
+from fastapi import UploadFile
 
-supabase = get_supabase_client()
+from app.core.exceptions import UploadFailedError, UserCreationError, UserInvalidError
+from app.repositories.user_repository import (
+    create_user_repository,
+    get_user_by_email,
+    upload_avatar_repository,
+)
+from app.schemas.user import UserCreate
 
 
 def create_user(user: UserCreate):
     try:
-        user_dict = user.model_dump(mode="json")
+        checking_email = get_user_by_email(user.email)
 
-        response = supabase.table("users").insert(user_dict).execute()
+        if checking_email:
+            raise UserInvalidError()
 
-        return response.data[0]
+        return create_user_repository(user)
 
     except Exception:
         raise UserCreationError()
+
+
+def upload_avatar_service(file: UploadFile):
+    try:
+        return upload_avatar_repository(file)
+
+    except Exception:
+        raise UploadFailedError()
