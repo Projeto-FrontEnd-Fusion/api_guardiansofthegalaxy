@@ -14,3 +14,9 @@ class UploadFailedError(AppException):
     detail = "Upload falhou"
     error_code = "UPLOAD_FAILED"
     status_code = 500
+
+
+class UserInvalidError(AppException):
+    detail = "Email inválido"
+    error_code = "USER_INVALID_ERROR"
+    status_code = 400
