@@ -4,7 +4,7 @@ from app.core.exception_handler import app_exception_handler
 from app.core.exceptions import AppException
 from app.core.lifespan import lifespan
 from app.core.logger import get_logger
-from app.routers import health, upload, user
+from app.routers import health, user
 
 logger = get_logger(__name__)
 
@@ -53,5 +53,4 @@ app.add_exception_handler(AppException, app_exception_handler)
 
 
 app.include_router(health.router)
-app.include_router(upload.router)
 app.include_router(user.router)
