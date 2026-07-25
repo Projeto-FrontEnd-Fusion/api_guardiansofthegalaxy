@@ -22,7 +22,7 @@ def create_testimonial(testimonial: TestimonialsSchema):
         return create_testimonial_repository(testimonial)
 
     except TestimonialContentBlocked:
-        raise TestimonialContentBlocked
+        raise TestimonialContentBlocked()
     except Exception:
         raise TestimonialError()
 
