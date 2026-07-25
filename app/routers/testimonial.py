@@ -1,11 +1,11 @@
 from app.schemas.error import ErrorResponse
-from app.schemas.testimonial import TestimonialSchemaResponse, TestimonialsSchema
-from app.services.testimonials_service import create_testimonial, list_testimonials
+from app.schemas.testimonial import TestimonialSchemaResponse, TestimonialSchema
+from app.services.testimonial_service import create_testimonial, list_testimonials
 
 from fastapi import APIRouter
 
 
-router = APIRouter(prefix="/testimonials", tags="Depoimentos")
+router = APIRouter(prefix="/testimonials", tags=["depoimentos"])
 
 @router.post(
     "/",
@@ -16,7 +16,7 @@ router = APIRouter(prefix="/testimonials", tags="Depoimentos")
         500: {"model": ErrorResponse},
     },
 )
-def create_testimonial_route(testimonial: TestimonialsSchema):
+def create_testimonial_route(testimonial: TestimonialSchema):
     return create_testimonial(testimonial)
 
 

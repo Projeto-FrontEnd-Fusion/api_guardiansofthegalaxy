@@ -34,9 +34,6 @@ class TestimonialContentBlocked(AppException):
     status_code = 400
 
 
-class TestimonialInvalidError(AppException):
-    detail = "Dados do depoimento invalidos"
-    error_code = "TESTIMONIAL_INVALID"
-    status_code = 400    
+  
 
     

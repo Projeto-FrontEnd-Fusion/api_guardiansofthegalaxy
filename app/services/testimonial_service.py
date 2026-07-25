@@ -6,14 +6,14 @@ from app.repositories.testimonial_repository import (
     create_testimonial_repository,
     list_testimonials_repository,
 )
-from app.schemas.testimonial import TestimonialsSchema
+from app.schemas.testimonial import TestimonialSchema
 
 
+profanity.load_censor_words()
+profanity.add_censor_words(bad_w)
 
-profanity.load_censor_words(bad_w)
 
-
-def create_testimonial(testimonial: TestimonialsSchema):
+def create_testimonial(testimonial: TestimonialSchema):
     try:
         if profanity.contains_profanity(testimonial.name) or \
            profanity.contains_profanity(testimonial.testimonial):
@@ -22,7 +22,7 @@ def create_testimonial(testimonial: TestimonialsSchema):
         return create_testimonial_repository(testimonial)
 
     except TestimonialContentBlocked:
-        raise TestimonialContentBlocked()
+        raise 
     except Exception:
         raise TestimonialError()
 
