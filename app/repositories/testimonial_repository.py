@@ -1,10 +1,10 @@
 from app.database.supabase import get_supabase_client
-from app.schemas.testimonial import TestimonialSchema
+
 
 supabase = get_supabase_client()
 
-def create_testimonial_repository(testimonial: TestimonialSchema):
-    response = (supabase.table("testimonials").insert(testimonial.model_dump(mode="json")).execute())
+def create_testimonial_repository(testimonial: dict):
+    response = (supabase.table("testimonials").insert(testimonial).execute())
 
     return response.data[0]
 

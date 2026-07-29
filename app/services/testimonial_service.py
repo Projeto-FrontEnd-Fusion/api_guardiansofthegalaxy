@@ -18,8 +18,8 @@ def create_testimonial(testimonial: TestimonialSchema):
         if profanity.contains_profanity(testimonial.name) or \
            profanity.contains_profanity(testimonial.testimonial):
             raise TestimonialContentBlocked()
-
-        return create_testimonial_repository(testimonial)
+        testimonial_dict = testimonial.model_dump(mode='json')
+        return create_testimonial_repository(testimonial_dict)
 
     except TestimonialContentBlocked:
         raise 
