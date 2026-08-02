@@ -4,7 +4,7 @@ from app.core.exception_handler import app_exception_handler
 from app.core.exceptions import AppException
 from app.core.lifespan import lifespan
 from app.core.logger import get_logger
-from app.routers import health, user
+from app.routers import health, user, testimonial
 
 logger = get_logger(__name__)
 
@@ -28,6 +28,10 @@ openapi_tags = [
     {
         "name": "autenticação",
         "description": "Endpoints de autenticação e autorização",
+    },
+    {
+        "name": "depoimentos",
+        "description": "Envio e listagem de depoimentos da seção Deixe seu Depoimento",
     },
 ]
 
@@ -54,3 +58,4 @@ app.add_exception_handler(AppException, app_exception_handler)
 
 app.include_router(health.router)
 app.include_router(user.router)
+app.include_router(testimonial.router)

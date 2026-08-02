@@ -20,3 +20,20 @@ class UserInvalidError(AppException):
     detail = "Email inválido"
     error_code = "USER_INVALID_ERROR"
     status_code = 400
+
+
+class TestimonialError(AppException):
+    detail = "erro ao processar depoimento"
+    error_code = "TESTIMONIAL_ERROR"
+    status_code = 500
+
+
+class TestimonialContentBlocked(AppException):
+    detail = "O depoimento contem conteudo inadequado. Por favor, revise seu texto antes de enviar."
+    error_code = "TESTIMONIAL_CONTENT_BLOCKED"
+    status_code = 400
+
+
+  
+
+    
